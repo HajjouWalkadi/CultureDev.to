@@ -1,3 +1,50 @@
+<?php
+require '../functions/script.php';
+
+if(!empty($_SESSION["id"])){
+  header("Location: index.php");
+}
+
+$login = new Login();
+
+if(isset($_POST["submit"])){
+  $result = $login->login($_POST["usernameemail"], $_POST["password"]);//chofi hna
+
+  if($result == 1){
+    $_SESSION["login"] = true;
+    $_SESSION["id"] = $login->idUser();
+    header("Location: index.php");
+  }
+  elseif($result == 10){
+    echo
+    "<script> alert('Wrong Password'); </script>";
+  }
+  elseif($result == 100){
+    echo
+    "<script> alert('User Not Registered'); </script>";
+  }
+}
+?>
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <form class="" action="" method="post" autocomplete="off">
+      <label for=""> Email : </label>
+      <input type="text" name="usernameemail" required value=""> <br>
+      <label for="">Password</label>
+      <input type="password" name="password" required value=""> <br>
+      <button type="submit" name="submit">Login</button>
+    </form>
+    <br>
+    <a href="../authentication/signup.php">Registration</a>
+  </body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +53,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	  <link rel="stylesheet" href="../assets/css/style.css">
-    <!-- <link rel="stylesheet" href="https://parsleyjs.org/src/parsley.css"> -->
-    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
-    <!-- <script defer src="https://parsleyjs.org/dist/parsley.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -19,7 +63,7 @@
     <title>Log In</title>
 </head>
 <body class="bgimage row m-0">
-<!-- <?php if (isset($_SESSION['loginErrorMessage'])): ?>
+<?php if (isset($_SESSION['loginErrorMessage'])): ?>
             <div class="d-flex justify-content-center">
                 <div class="alert alert-danger alert-dismissible fade show mt-5 w-25">
                     <strong>Error : </strong>
@@ -30,7 +74,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             </div>
-        <?php endif ?> -->
+        <?php endif ?>
       
     <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform" action="../functions/script.php" method="post">
       <!-- Email input -->
