@@ -1,36 +1,31 @@
-<?php 
-session_start();
-include '../functions/script.php';
-// $erreur="";
-// $error="";
-$Register = new Register();
+<?php
+// session_start();
+require '../functions/script.php';
 
-if(isset($_POST["signup"])){
-
-    $username = $_POST['userName'];
-    
-    $password = md5($_POST['password']);
-    
-    $email =filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-
-    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-      $error='this email not valid';
-
-    }else{
-    $sql = "SELECT *  FROM admin WHERE email = '$email' ";
-    $result = mysqli_query($conn,$sql);
-    $countAccount = mysqli_num_rows($result);
-    if($countAccount == 0){
-      $sql ="INSERT INTO admin (`username`, `email`, `password`) VALUES ('$username','$email','$password')";
-      $result = mysqli_query($conn,$sql);
-          header('location: ../authentication/signin.php'); 
-  }else{
-      $erreur="This email already exist";
-  } 
-}  
+if(!empty($_SESSION["id"])){
+  header("Location: ../pages/index.php");
 }
 
+$register = new Register();
+
+if(isset($_POST["submit"])){
+  $result = $register->registration($_POST["name"], $_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirmpassword"]);
+
+  if($result == 1){
+    echo
+    "<script> alert('Registration Successful'); </script>";
+  }
+  else if($result == 10){
+    echo
+    "<script> alert('Username or Email Has Already Taken'); </script>";
+  }
+  else if($result == 100){
+    echo
+    "<script> alert('Password Does Not Match'); </script>";
+  }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,10 +33,7 @@ if(isset($_POST["signup"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../assets/css/style.css">
-  <!-- <link rel="stylesheet" href="https://parsleyjs.org/src/parsley.css">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script defer src="https://parsleyjs.org/dist/parsley.min.js"></script> -->
+	  <link rel="stylesheet" href="../assets/css/style.css">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -57,7 +49,7 @@ if(isset($_POST["signup"])){
 <form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" action="signup.php" method="post">
   <!-- Email input -->
   <div class="text-center">
-  <!-- <p class="text-danger"><?= $erreur; ?></p> -->
+  <p class="text-danger"><?= $erreur; ?></p>
   </div>
   <h1 class="text-center mt-2">Create An Account</h1>
 
@@ -84,7 +76,7 @@ if(isset($_POST["signup"])){
   
   <!-- Submit button -->
   <button type="submit" name="signup" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign up</button>
-  <p>Already have an account ? <a href="../authentication/signin.php> Sign In</a></p>
+  <p>Already have an account ? <a href="../authentication/signin.php> </a></p>
   <!-- Register buttons -->
   <div class="text-center">
     <p>sign up with:</p>
