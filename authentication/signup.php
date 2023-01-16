@@ -18,7 +18,7 @@
     
     <title>SignUp</title>
 </head>
-<body class="bgimage row m-0">
+<!-- <body class="bgimage row m-0"> -->
   
 <form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" action="signup.php" method="post">
   <!-- Email input -->
