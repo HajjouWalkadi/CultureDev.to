@@ -1,0 +1,29 @@
+
+.btn-blue {
+    margin: auto;
+}
+
+.signupform{
+    background: rgba(253, 255, 255, 0.5);
+    border-radius: 9px;
+}
+
+.loginform{
+    background: rgba(253, 255, 255, 0.5);
+    border-radius: 9px;
+}
+
+button{
+   background : none
+}
+#size-img{
+    width: 40px;
+}
+
+.tab1::-webkit-scrollbar
+{
+    display: none;
+}
+
+
+
