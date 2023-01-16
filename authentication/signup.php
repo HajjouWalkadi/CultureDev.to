@@ -1,3 +1,37 @@
+<?php 
+session_start();
+include '../functions/script.php';
+// $erreur="";
+// $error="";
+$Register = new Register();
+
+if(isset($_POST["signup"])){
+
+    $username = $_POST['userName'];
+    
+    $password = md5($_POST['password']);
+    
+    $email =filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+      $error='this email not valid';
+
+    }else{
+    $sql = "SELECT *  FROM admin WHERE email = '$email' ";
+    $result = mysqli_query($conn,$sql);
+    $countAccount = mysqli_num_rows($result);
+    if($countAccount == 0){
+      $sql ="INSERT INTO admin (`username`, `email`, `password`) VALUES ('$username','$email','$password')";
+      $result = mysqli_query($conn,$sql);
+          header('location: ../authentication/signin.php'); 
+  }else{
+      $erreur="This email already exist";
+  } 
+}  
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +57,7 @@
 <form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" action="signup.php" method="post">
   <!-- Email input -->
   <div class="text-center">
-  <p class="text-danger"><?= $erreur; ?></p>
+  <!-- <p class="text-danger"><?= $erreur; ?></p> -->
   </div>
   <h1 class="text-center mt-2">Create An Account</h1>
 
@@ -49,13 +83,13 @@
 
   
   <!-- Submit button -->
-  <button type="submit" name="signup" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign in</button>
-  <p>Already have an account ? <a href="../authentication/signin.php> SignUp</a></p>
+  <button type="submit" name="signup" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign up</button>
+  <p>Already have an account ? <a href="../authentication/signin.php> Sign In</a></p>
   <!-- Register buttons -->
   <div class="text-center">
     <p>sign up with:</p>
     <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-facebook">
     </button>
 
     <button type="button" class="btn btn-link btn-floating mx-1">
