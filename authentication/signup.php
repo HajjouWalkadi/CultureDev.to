@@ -20,7 +20,7 @@
 </head>
 <body class="bgimage row m-0">
   
-<form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" action="signup.php" method="post" data-parsley-validate>
+<form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" action="signup.php" method="post">
   <!-- Email input -->
   <div class="text-center">
   <p class="text-danger"><?= $erreur; ?></p>
@@ -28,21 +28,21 @@
   <h1 class="text-center mt-2">Create An Account</h1>
 
   <div class="form-outline mb-4">
-    <input type="text" id="userName" name="userName" class="form-control" placeholder="Enter username" required />
+    <input type="text" id="userName" name="userName" class="form-control" placeholder="Enter username"/>
     <label class="form-label" for="form2Example1">Username</label>
   </div>
   <div class="form-outline mb-4">
-    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your address email" data-parsley-type="email" required />
+    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your address email" data-parsley-type="email"/>
     <label class="form-label" for="form2Example2">Email address</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required data-parsley-length="[8, 16]" data-parsley-trigger="keyup" required />
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password"/>
     <label class="form-label" for="form2Example3">Password</label>
   </div>
   <div class="form-outline mb-4">
-    <input type="password" id="passwordCheck" name="passwordCheck" class="form-control" placeholder="Confirm Password" data-parsley-equalto="#password" data-parsley-trigger="keyup" required />
+    <input type="password" id="passwordCheck" name="passwordCheck" class="form-control" placeholder="Confirm Password"/>
     <label class="form-label" for="form2Example4">Confirm Password</label>
   </div>
   
@@ -50,7 +50,7 @@
   
   <!-- Submit button -->
   <button type="submit" name="signup" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign in</button>
-  <p>Already have an account ? <a href="../pages/login.php"> Log in</a></p>
+  <p>Already have an account ? <a href="../authentication/signin.php> SignUp</a></p>
   <!-- Register buttons -->
   <div class="text-center">
     <p>sign up with:</p>
@@ -71,7 +71,7 @@
     </button>
   </div>
 </form>
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/script.js"></script>
 
 </body>
 </html>
