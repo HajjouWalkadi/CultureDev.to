@@ -8,8 +8,8 @@ if(!empty($_SESSION["id"])){
 
 $register = new Register();
 
-if(isset($_POST["submit"])){
-  $result = $register->registration($_POST["name"], $_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirmpassword"]);
+if(isset($_POST["signup"])){
+  $result = $register->registration($_POST["userName"], $_POST["email"], $_POST["password"], $_POST["passwordCheck"]);
 
   if($result == 1){
     echo
@@ -25,7 +25,6 @@ if(isset($_POST["submit"])){
   }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,10 +45,10 @@ if(isset($_POST["submit"])){
 </head>
 <!-- <body class="bgimage row m-0"> -->
   
-<form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" action="signup.php" method="post">
+<form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" method="post">
   <!-- Email input -->
   <div class="text-center">
-  <p class="text-danger"><?= $erreur; ?></p>
+  <!-- <p class="text-danger"><?= $erreur; ?></p> -->
   </div>
   <h1 class="text-center mt-2">Create An Account</h1>
 
@@ -72,13 +71,11 @@ if(isset($_POST["submit"])){
     <label class="form-label" for="form2Example4">Confirm Password</label>
   </div>
   
-
-  
   <!-- Submit button -->
   <button type="submit" name="signup" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign up</button>
   <p>Already have an account ? <a href="../authentication/signin.php> </a></p>
   <!-- Register buttons -->
-  <div class="text-center">
+  <div class="text-center>
     <p>sign up with:</p>
     <button type="button" class="btn btn-link btn-floating mx-1">
       <i class="fab fa-facebook">

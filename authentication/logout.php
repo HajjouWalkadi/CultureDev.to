@@ -1,6 +1,6 @@
 <?php
-require 'function.php';
+require '../functions/script.php';
 $_SESSION = [];
 session_unset();
 session_destroy();
-header("Location: login.php");
+header("Location: signin.php");
