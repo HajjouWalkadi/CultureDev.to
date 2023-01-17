@@ -7,8 +7,8 @@ if(!empty($_SESSION["id"])){
 
 $login = new Login();
 
-if(isset($_POST["submit"])){
-  $result = $login->login($_POST["usernameemail"], $_POST["password"]);//chofi hna
+if(isset($_POST["login"])){
+  $result = $login->login($_POST["email"], $_POST["password"]);//chofi hna
 
   if($result == 1){
     $_SESSION["login"] = true;
@@ -25,25 +25,7 @@ if(isset($_POST["submit"])){
   }
 }
 ?>
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Login</title>
-  </head>
-  <body>
-    <h2>Login</h2>
-    <form class="" action="" method="post" autocomplete="off">
-      <label for=""> Email : </label>
-      <input type="text" name="usernameemail" required value=""> <br>
-      <label for="">Password</label>
-      <input type="password" name="password" required value=""> <br>
-      <button type="submit" name="submit">Login</button>
-    </form>
-    <br>
-    <a href="../authentication/signup.php">Registration</a>
-  </body>
-</html> -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +45,7 @@ if(isset($_POST["submit"])){
     <title>Log In</title>
 </head>
 <body class="bgimage row m-0">
-<?php if (isset($_SESSION['loginErrorMessage'])): ?>
+<!-- <?php if (isset($_SESSION['loginErrorMessage'])): ?>
             <div class="d-flex justify-content-center">
                 <div class="alert alert-danger alert-dismissible fade show mt-5 w-25">
                     <strong>Error : </strong>
@@ -74,9 +56,9 @@ if(isset($_POST["submit"])){
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             </div>
-        <?php endif ?>
+        <?php endif ?> -->
       
-    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform" action="../functions/script.php" method="post">
+    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform" action="../pages/dashboard.php" method="post">
       <!-- Email input -->
       <h1 class="text-center mt-2">Log In</h1>
 
