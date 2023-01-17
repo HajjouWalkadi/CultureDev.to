@@ -3,16 +3,21 @@
 include '../classes/database.php';
 
 class Register extends Database{
+
+// <SCRIPT>VG htmlentities() &lt;script>
   public function registration($username, $email, $password, $confirmpassword){
-    $duplicate = mysqli_query($this->conn, "SELECT * FROM admin WHERE username = '$username' OR email = '$email'");
-    if(mysqli_num_rows($duplicate) > 0){
+    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE username = '$username' OR email = '$email'");
+    $stmt->execute();
+
+    if($stmt->rowCount() > 0){
       return 10;
       // Username or email has already taken
     }
     else{
       if($password == $confirmpassword){
-        $query = "INSERT INTO admin VALUES('', '$username', '$email', '$password')";
-        mysqli_query($this->conn, $query);
+        $stmt = $this->connectPDO()->prepare( "INSERT INTO admin VALUES('', '$username', '$email', '$password')");
+        $stmt->execute();
+        header("Location: signin.php");
         return 1;
         // Registration successful
       }
@@ -22,17 +27,18 @@ class Register extends Database{
       }
     }
   }
-}
 
+
+}
 class Login extends Database{
   public $id;
   public function login($usernameemail, $password){
-    $result = mysqli_query($this->conn, "SELECT * FROM admin WHERE username = '$usernameemail' OR email = '$usernameemail'");
-    $row = mysqli_fetch_assoc($result);
+    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE username = '$usernameemail' OR email = '$usernameemail'");
+    $stmt->execute();
 
-    if(mysqli_num_rows($result) > 0){
-      if($password == $row["password"]){
-        $this->id = $row["id"];
+    if($stmt->rowCount() > 0){
+      if($password == $stmt["password"]){
+        $this->id = $stmt["id"];
         return 1;
         // Login successful
       }
@@ -54,7 +60,7 @@ class Login extends Database{
 
 class Select extends Database{
   public function selectUserById($id){
-    $result = mysqli_query($this->conn, "SELECT * FROM admin WHERE id = $id");
-    return mysqli_fetch_assoc($result);
+    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE id = $id");
+    return $stmt->execute();
   }
 }
