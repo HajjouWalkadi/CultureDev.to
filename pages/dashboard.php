@@ -32,7 +32,7 @@
             <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Products</a>
+            <a class="nav-link text-dark" href="#">Blogs</a>
           </li> 
           <li class="nav-item">
             <!-- <a class="nav-link text-primary bolder" href="#"><?php
