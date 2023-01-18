@@ -16,8 +16,8 @@ class Register extends Database{
     }
     else{
       if($password == $confirmpassword){
-        $stmt = $this->connectPDO()->prepare( "INSERT INTO admin VALUES('', '$username', '$email', '$password')");
-        $stmt->execute();
+        $stmt = $this->connectPDO()->prepare( "INSERT INTO admin (username,email,password) VALUES(?,?,?)");
+        $stmt->execute([$username,$email,$password]);
         header("Location: signin.php");
         return 1;
         // Registration successful
