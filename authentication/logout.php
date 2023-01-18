@@ -3,4 +3,4 @@ require '../functions/script.php';
 $_SESSION = [];
 session_unset();
 session_destroy();
-header("Location: signin.php");
+header("Location: ../authentication/signin.php");

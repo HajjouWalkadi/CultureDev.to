@@ -17,7 +17,7 @@ class Register extends Database{
       if($password == $confirmpassword){
         $stmt = $this->connectPDO()->prepare( "INSERT INTO admin (username,email,password) VALUES(?,?,?)");
         $stmt->execute([$username,$email,$password]);
-        header("Location: signin.php");
+        header("Location: ../authentication/signin.php");
         return 1;
         // Registration successful
       }
@@ -32,13 +32,13 @@ class Register extends Database{
 }
 class Login extends Database{
   public $id;
-  public function login($usernameemail, $password){
-    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE username = '$usernameemail' OR email = '$usernameemail'");
+  public function login($email, $password){
+    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE username = '$email' OR email = '$email'");
     $stmt->execute();
-
+    $res = $stmt->fetch(PDO::FETCH_ASSOC);
     if($stmt->rowCount() > 0){
-      if($password == $stmt["password"]){
-        $this->id = $stmt["id"];
+      if($password == $res["password"]){
+        $this->id = $res["id"];
         return 1;
         // Login successful
       }

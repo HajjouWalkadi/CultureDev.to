@@ -17,7 +17,6 @@ class Database {
         
     }
 }
-
 // class Database{
 //     public $host = "localhost";
 //     public $db_name = "cultureDevto";

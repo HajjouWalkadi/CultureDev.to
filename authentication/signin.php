@@ -1,9 +1,9 @@
 <?php
 require '../functions/script.php';
 
-if(!empty($_SESSION["id"])){
-  header("Location: index.php");
-}
+// if(!empty($_SESSION["id"])){
+//   header("Location: signin.php");
+// }
 
 $login = new Login();
 
@@ -13,7 +13,7 @@ if(isset($_POST["login"])){
   if($result == 1){
     $_SESSION["login"] = true;
     $_SESSION["id"] = $login->idUser();
-    header("Location: index.php");
+    header("Location: ../pages/dashboard.php");
   }
   elseif($result == 10){
     echo
@@ -58,7 +58,7 @@ if(isset($_POST["login"])){
             </div>
         <?php endif ?> -->
       
-    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform" action="../pages/dashboard.php" method="post">
+    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform"  method="post">
       <!-- Email input -->
       <h1 class="text-center mt-2">Log In</h1>
 
