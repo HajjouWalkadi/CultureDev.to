@@ -2,17 +2,39 @@
 .btn-blue {
     margin: auto;
 }
+<<<<<<< HEAD
 .bgcolor{
     background-color: #b9b9ba;
 }
 .signupform{
     /* background: rgba(253, 255, 255, 0.5); */
     background: rgba(21, 226, 226, 0.5);
+=======
+
+
+.bgimage{
+    background-color: #E1D7C6;
+    /* background-image: url(../img/backgroundsign.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 4%;
+}
+
+.signupform{
+    /* background: rgba(253, 255, 255, 0.5); */
+    background: #B7C4CF;
+>>>>>>> 70f582c (sign in & sign up finished)
     border-radius: 9px;
 }
 
 .loginform{
+<<<<<<< HEAD
     background: rgba(21, 226, 226, 0.5);
+=======
+    background: #B7C4CF;
+    /* background: rgba(0, 0, 0, 0.5); */
+    /* background: rgba(21, 21, 21, 0.5); */
+>>>>>>> 70f582c (sign in & sign up finished)
     border-radius: 9px;
 }
 

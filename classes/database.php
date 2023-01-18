@@ -17,5 +17,19 @@ class Database {
         
     }
 }
+<<<<<<< HEAD
 
+=======
+// class Database{
+//     public $host = "localhost";
+//     public $db_name = "cultureDevto";
+//     public $user = "root";
+//     public $password = "";
+//     public $conn;
+  
+//     public function __construct(){
+//       $this->conn = mysqli_connect($this->host, $this->user, $this->password, $this->db_name);
+//     }
+//   }
+>>>>>>> 70f582c (sign in & sign up finished)
   ?>

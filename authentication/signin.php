@@ -1,9 +1,9 @@
 <?php
 require '../functions/script.php';
 
-if(!empty($_SESSION["id"])){
-  header("Location: index.php");
-}
+// if(!empty($_SESSION["id"])){
+//   header("Location: signin.php");
+// }
 
 $login = new Login();
 
@@ -15,6 +15,22 @@ if(isset($_POST["login"])){
     die(var_dump($_SESSION));
   }
 
+<<<<<<< HEAD
+=======
+  if($result == 1){
+    $_SESSION["login"] = true;
+    $_SESSION["id"] = $login->idUser();
+    header("Location: ../pages/dashboard.php");
+  }
+  elseif($result == 10){
+    echo
+    "<script> alert('Wrong Password'); </script>";
+  }
+  elseif($result == 100){
+    echo
+    "<script> alert('User Not Registered'); </script>";
+  }
+>>>>>>> 70f582c (sign in & sign up finished)
 }
 ?>
 
@@ -52,7 +68,11 @@ if(isset($_POST["login"])){
             </div>
         <?php endif ?> -->
       
+<<<<<<< HEAD
     <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform" action="signin.php" method="post">
+=======
+    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform"  method="post">
+>>>>>>> 70f582c (sign in & sign up finished)
       <!-- Email input -->
       <h1 class="text-center mt-2">Log In</h1>
 
