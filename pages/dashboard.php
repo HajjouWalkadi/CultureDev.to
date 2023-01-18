@@ -1,4 +1,13 @@
+<?php 
+include_once '../controller/postsController.php';
+$ArticleController = new ArticleController();
+$ArticleController->create();
+$Allarticles = $ArticleController->read();
 
+if(isset($_GET['ide'])){
+$ArticleController->delete($_GET['ide']);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +90,7 @@
    
       <div class="col">
             <div class="d-flex justify-content-lg-end ps-2 mt-3">
-              <button type="button" class="btn btn-dark fw-bold p-2" data-bs-toggle="modal" data-bs-target="#modal-game">
+              <button type="button" class="btn btn-dark fw-bold p-2" data-bs-toggle="modal" data-bs-target="#modal-blog">
                 Add Blog
               </button>
             </div>
@@ -138,7 +147,8 @@
                 <thead>
                         <tr>
                           <!-- <th scope="col"></th>  -->
-                          <th scope="col">Image</th>
+                          <!-- <th scope="col">Image</th> -->
+                          <th scope="col">Id</th>
                           <th scope="col">Title</th>
                           <th scope="col">Category</th>
                           <th scope="col">Description</th>
@@ -147,22 +157,31 @@
                         </tr>
                 </thead>
                 <tbody>
-                      
+                <?php 
+                   if(empty($Allarticles))
+                       echo '<tr class="align-middle"><th class="col-3">No result found.</th> </tr>';
+                   else{foreach($Allarticles as $article){?>
                       
                     <tr>
-                        <td><img src="../assets/upload/" style="width: 90px;"></td>
-                      <th scope="row"></th>
-                      <td>hhhhhhhh</td>
-                      <td>hhhhhhhh</td>
+                        <!-- <td><img src="../assets/upload/" style="width: 90px;"></td> -->
+                      <th scope="row"><?=$article['id']; ?></th>
+                      <td><?=$article['title']; ?></td>
+                      <td><?=$article['nameCategorie']; ?></td>
+                      <td><?=$article['content']; ?></td>
                       <td><a href="../functions/Edit.php?id=<?= $row['id'] ?>"><span onclick="editProduct()" class="btn btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
+                     
                             
                       <td>
+                      <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger">Delete</span></a>
+                            
                         <a href="#" onclick="if(confirm('Are you sure want to delete this record !')){ document.querySelector('#delete-product-').submit();}"><span class="btn btn-danger text-black"><i class="fas fa-trash text-white"></i></span></a>
-                              <form action="../functions/delete.php" method="post" id="delete-product-">
+                              <form action="" method="post" id="delete-product-">
                                 <input type="hidden" name="delete" value="">
                               </form>
                             </td>
                           </tr>
+                          <?php }
+                   }?>
                         
                   </tbody>
               </table>   
@@ -173,7 +192,7 @@
               <div class="modal fade" id="modal-blog">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <form action="../functions/Create.php" method="POST" id="form-blog" enctype="multipart/form-data">
+                    <form action="" method="POST" id="form-blog" enctype="multipart/form-data">
                       <div class="modal-header">
                         <h5 class="modal-title">Add Blog</h5>
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -189,20 +208,22 @@
                         
                         <div class="mb-3">
                           <label class="form-label">Title</label>
-                          <input type="text" class="form-control" name="productTitle" id="blog-title" required/>
+                          <input type="text" class="form-control" name="title" id="blog-title" required/>
                         </div>
                         
                         <div class="mb-3">
                           <label class="form-label">Category</label>
-                          <select class="form-select" name= "blogCategory" id="blog-category" required>
+                          <select class="form-select" name= "category" id="blog-category" >
                             <option value="" selected disabled>Please select</option>
-                            
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
                           </select>
                         </div>
                         
                           <div class="mb-3">
                             <label class="form-label">Description</label>
-                            <input type="text" class="form-control" name="blogDescription" id="blog-description" required/>
+                            <input type="text" class="form-control" name="content" id="blog-description" required/>
                           </div>
                           
                           
@@ -214,7 +235,7 @@
                         </div>
                       <div class="modal-footer">
                         <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-                        <button type="submit" name="saveProduct" class="btn btn-primary task-action-btn" id="product-save-btn">Save</button>
+                        <button type="submit" name="saveArticle" class="btn btn-primary task-action-btn" id="saveArticle">Save</button>
                       </div> 
                     </form>
                   </div>
