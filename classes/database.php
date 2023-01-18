@@ -18,15 +18,4 @@ class Database {
     }
 }
 
-// class Database{
-//     public $host = "localhost";
-//     public $db_name = "cultureDevto";
-//     public $user = "root";
-//     public $password = "";
-//     public $conn;
-  
-//     public function __construct(){
-//       $this->conn = mysqli_connect($this->host, $this->user, $this->password, $this->db_name);
-//     }
-//   }
   ?>
