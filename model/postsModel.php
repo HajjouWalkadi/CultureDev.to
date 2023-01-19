@@ -27,20 +27,29 @@ class Article extends Database{
         return 1;
     }
 
-    public function updateDB($id, $admin_id, $title, $content, $image, $category_name, $category_id) {
-        $query = 'UPDATE articles SET admin_id = :admin_id, title = :title, content = :content, 
-                    image = :image, category_name = :category_name, category_id = :category_id WHERE id = :id';
+    public function updateDB($id, $title, $content, $category_id) {
+        $query = 'UPDATE articles SET title = :title, content = :content, 
+                  category_id = :category_id WHERE id = :id';
         $stmt = $this->connectPDO()->prepare($query);
         $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':admin_id', $admin_id);
+        // $stmt->bindParam(':admin_id', $admin_id);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':image', $image);
-        $stmt->bindParam(':category_name', $category_name);
+        // $stmt->bindParam(':image', $image);
         $stmt->bindParam(':category_id', $category_id);
         if ($stmt->execute()) {
             return true;
         } 
+    }
+
+    public function editDB($id) {
+        $query = 'SELECT * FROM articles WHERE id = :id';
+        $stmt = $this->connectPDO()->prepare($query);
+        $stmt->bindParam(':id', $id);
+        // $stmt->bindParam(':admin_id', $admin_id);
+        // $stmt->bindParam(':image', $image);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     public function deleteDB($id) {

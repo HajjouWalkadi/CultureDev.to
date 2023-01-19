@@ -8,21 +8,12 @@ if(!empty($_SESSION["id"])){
 $login = new Login();
 
 if(isset($_POST["login"])){
-  $result = $login->login($_POST["email"], $_POST["password"]);//chofi hna
+  $login->login($_POST["email"], $_POST["password"]);
 
-  if($result == 1){
-    $_SESSION["login"] = true;
-    $_SESSION["id"] = $login->idUser();
-    header("Location: index.php");
-  }
-  elseif($result == 10){
-    echo
-    "<script> alert('Wrong Password'); </script>";
-  }
-  elseif($result == 100){
-    echo
-    "<script> alert('User Not Registered'); </script>";
-  }
+  // if($result == 1){
+  //   $_SESSION["login"] = true;
+  //   $_SESSION["id"] = $login->idUser();
+  // }
 }
 ?>
 
@@ -44,7 +35,9 @@ if(isset($_POST["login"])){
     
     <title>Log In</title>
 </head>
-<body class="bgimage row m-0">
+<!-- <body class="bgimage row m-0"> -->
+  <body class="bgcolor row m-0">
+
 <!-- <?php if (isset($_SESSION['loginErrorMessage'])): ?>
             <div class="d-flex justify-content-center">
                 <div class="alert alert-danger alert-dismissible fade show mt-5 w-25">
@@ -58,7 +51,7 @@ if(isset($_POST["login"])){
             </div>
         <?php endif ?> -->
       
-    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform" action="../pages/dashboard.php" method="post">
+    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform"  method="post">
       <!-- Email input -->
       <h1 class="text-center mt-2">Log In</h1>
 

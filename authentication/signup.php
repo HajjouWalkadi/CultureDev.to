@@ -44,7 +44,9 @@ if(isset($_POST["signup"])){
     <title>SignUp</title>
 </head>
 <!-- <body class="bgimage row m-0"> -->
-  
+
+<body class="bgimage">
+
 <form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" method="post">
   <!-- Email input -->
   <div class="text-center">
