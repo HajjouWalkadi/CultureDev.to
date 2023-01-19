@@ -1,8 +1,14 @@
 <?php 
 include_once '../controller/postsController.php';
+include_once '../functions/script.php';
 $ArticleController = new ArticleController();
 $ArticleController->create();
 $Allarticles = $ArticleController->read();
+echo isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu']);
+// if(!isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu'])){
+//   // echo "ggggggggggg";
+//   header('Location: ../authentication/signup.php');
+// }
 
 if(isset($_GET['ide'])){
 $ArticleController->delete($_GET['ide']);
@@ -91,7 +97,7 @@ $ArticleController->delete($_GET['ide']);
       <div class="col">
             <div class="d-flex justify-content-lg-end ps-2 mt-3">
               <button type="button" class="btn btn-dark fw-bold p-2" data-bs-toggle="modal" data-bs-target="#modal-blog">
-                Add Blog
+                Add Posts
               </button>
             </div>
 
@@ -104,9 +110,9 @@ $ArticleController->delete($_GET['ide']);
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3 mb-4">
                 <div class="card-body">
                   <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
-                      <i class="fa-solid fa-gamepad text-white fa-lg"></i>
+                      <i class="fa-solid fa-square text-white fa-lg"></i>
                   </div>
-                  <h5 class="card-title">Total Posts</h5>
+                  <h5 class="card-title">Posts</h5>
                   <p class="card-text justify-content"></p>
                 </div>
               </div>
@@ -116,7 +122,7 @@ $ArticleController->delete($_GET['ide']);
               <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
                       <i class="fa-solid fa-cubes text-white fa-lg"></i>
                   </div>
-                <h5 class="card-title">Toatal for each category</h5>
+                <h5 class="card-title">Categories</h5>
                 
                 <!-- //   while( $product=mysqli_fetch_assoc($result)){
                     
@@ -131,9 +137,9 @@ $ArticleController->delete($_GET['ide']);
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
                 <div class="card-body">
                 <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
-                      <i class="fa-solid fa-shop text-white fa-lg"></i>
+                      <i class="fa-solid fa-person text-white fa-lg"></i>
                   </div>
-                  <h5 class="card-title">Total posts for each developper</h5>
+                  <h5 class="card-title">Developpers</h5>
                  
                   </div>          
               </div>
@@ -168,16 +174,17 @@ $ArticleController->delete($_GET['ide']);
                       <td><?=$article['title']; ?></td>
                       <td><?=$article['nameCategorie']; ?></td>
                       <td><?=$article['content']; ?></td>
-                      <td><a href="../functions/Edit.php?id=<?= $row['id'] ?>"><span onclick="editProduct()" class="btn btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
+                      <td><a name="editArticle" href="editPosts.php?postEditId=<?=$article['id'];?>"><span onclick="editProduct()" class="btn btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
                      
                             
                       <td>
-                      <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger">Delete</span></a>
+                      <!-- <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger">Delete</span></a> -->
+                      <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger"><i class="fas fa-trash text-white"></i></span></a>
                             
-                        <a href="#" onclick="if(confirm('Are you sure want to delete this record !')){ document.querySelector('#delete-product-').submit();}"><span class="btn btn-danger text-black"><i class="fas fa-trash text-white"></i></span></a>
+                        <!-- <a href="#" onclick="if(confirm('Are you sure want to delete this record !')){ document.querySelector('#delete-product-').submit();}"><span class="btn btn-danger text-black"><i class="fas fa-trash text-white"></i></span></a>
                               <form action="" method="post" id="delete-product-">
                                 <input type="hidden" name="delete" value="">
-                              </form>
+                              </form> -->
                             </td>
                           </tr>
                           <?php }
@@ -194,7 +201,7 @@ $ArticleController->delete($_GET['ide']);
                   <div class="modal-content">
                     <form action="" method="POST" id="form-blog" enctype="multipart/form-data">
                       <div class="modal-header">
-                        <h5 class="modal-title">Add Blog</h5>
+                        <h5 class="modal-title">Add Posts</h5>
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
                       </div>
                       <div class="modal-body">
@@ -210,7 +217,6 @@ $ArticleController->delete($_GET['ide']);
                           <label class="form-label">Title</label>
                           <input type="text" class="form-control" name="title" id="blog-title" required/>
                         </div>
-                        
                         <div class="mb-3">
                           <label class="form-label">Category</label>
                           <select class="form-select" name= "category" id="blog-category" >
@@ -222,15 +228,16 @@ $ArticleController->delete($_GET['ide']);
                         </div>
                         
                           <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <input type="text" class="form-control" name="content" id="blog-description" required/>
+                            <label class="form-label">Content</label>
+                            <!-- <input type="text" class="form-control" name="content" id="blog-description" required/> -->
+                            <textarea class="form-control" name="content" id="blog-description" placeholder="Content..."><?php if(isset($row)) { echo $row['content']; } ?></textarea>
                           </div>
                           
                           
-                          <div class="mb-3">
+                          <!-- <div class="mb-3">
                             <label class="form-label">Price</label>
                             <input type="text" class="form-control" name="productPrice" id="blog-quantity" required/>
-                          </div>
+                          </div> -->
                         
                         </div>
                       <div class="modal-footer">
