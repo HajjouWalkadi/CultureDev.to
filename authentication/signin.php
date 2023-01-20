@@ -8,7 +8,14 @@ if(!empty($_SESSION["id"])){
 $login = new Login();
 
 if(isset($_POST["login"])){
-  $login->login($_POST["email"], $_POST["password"]);
+  $result = $login->login($_POST["email"], $_POST["password"]);
+  // die(var_dump($result));
+  if(isset($result)){
+    $_SESSION['user_name'] = $result['username'];
+    header('location:../pages/dashboard.php');
+    die(var_dump($_SESSION));
+  }
+
 
   // if($result == 1){
   //   $_SESSION["login"] = true;
@@ -51,7 +58,7 @@ if(isset($_POST["login"])){
             </div>
         <?php endif ?> -->
       
-    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform"  method="post">
+    <form class="col-lg-4 col-md-5 col-11 m-auto p-2 px-4 loginform" action="signin.php" method="post">
       <!-- Email input -->
       <h1 class="text-center mt-2">Log In</h1>
 

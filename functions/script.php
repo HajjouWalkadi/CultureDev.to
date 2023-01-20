@@ -35,17 +35,10 @@ class Login extends Database{
   public $id;
 
   public function login($email, $password){
-    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE email = '$email' AND password = '$password' ");
+    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE email = '$email' AND password = '$password'");
     $stmt->execute();
     $result=$stmt->fetch(PDO::FETCH_ASSOC);
-    // print_r( $result);
-    if($stmt->rowCount()>0){
-        $this->id = $result["id"];
-        $_SESSION['uuuuuuuuuuuuuuuuuuuuuu'] = $result["id"];
-        echo $_SESSION['uuuuuuuuuuuuuuuuuuuuuu'];
-        header('Location: ../pages/dashboard.php');
-        return 1;
-     }else return 0;
+    return $result;
   }
 
   public function idUser(){

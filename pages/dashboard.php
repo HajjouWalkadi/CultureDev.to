@@ -4,8 +4,13 @@ include_once '../functions/script.php';
 $ArticleController = new ArticleController();
 $ArticleController->create();
 $Allarticles = $ArticleController->read();
+// die(var_dump($_SESSION['user_name']));
+if(!isset($_SESSION['user_name'])){
+  header('location:../authentication/signin.php');
+}
+// die(var_dump($_SESSION));
 // $Allarticles = $ArticleController->update();
-echo isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu']);
+// echo isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu']);
 // if(!isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu'])){
 //   // echo "ggggggggggg";
 //   header('Location: ../authentication/signup.php');
@@ -14,6 +19,7 @@ echo isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu']);
 if(isset($_GET['ide'])){
 $ArticleController->delete($_GET['ide']);
 }
+// post , get , session
 ?>
 
 <!DOCTYPE html>
@@ -52,11 +58,11 @@ $ArticleController->delete($_GET['ide']);
             <a class="nav-link text-dark" href="#">Blogs</a>
           </li> 
           <li class="nav-item">
-            <!-- <a class="nav-link text-primary bolder" href="#"><?php
-            if(isset($_SESSION['username'] )){
-              echo $_SESSION['username'] ;
+            <a class="nav-link text-primary bolder" href="#"><?php
+            if(isset($_SESSION['user_name'] )){
+              echo $_SESSION['user_name'] ;
             }
-            ?></a> -->
+            ?></a>
           </li>
           
         </ul>
@@ -84,7 +90,7 @@ $ArticleController->delete($_GET['ide']);
                       </li>                  
                       
                       <li>
-                          <a href="logout.php" class="nav-link px-0 align-middle">
+                          <a href="../authentication/logout.php" class="nav-link px-0 align-middle">
                           <i class="fas fa-lock"></i><span class="ms-1 d-none d-md-inline text-white">Logout</span></a>
                       </li>
                     
@@ -176,7 +182,7 @@ $ArticleController->delete($_GET['ide']);
                       <td><?=$article['title']; ?></td>
                       <td><?=$article['nameCategorie']; ?></td>
                       <td><?=$article['content']; ?></td>
-                      <td><a name="editArticle" href="editPosts.php?postEditId=<?=$article['id'];?>"><span onclick="editProduct()" class="btn btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
+                      <td><a name="editArticle" href="editPosts.php?postEditId=<?=$article['id'];?>"><span onclick="editProduct()" class="btn btn-sm btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
                      
                             
                       <td>
