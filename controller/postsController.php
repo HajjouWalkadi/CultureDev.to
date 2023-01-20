@@ -52,7 +52,8 @@ public function update($id, $title, $content, $category_id) {
     // $stmt->bindParam(':image', $image);
     $stmt->bindParam(':category_id', $category_id);
     if ($stmt->execute()) {
-        return true;
+        // return true;
+        header('location:dashboard.php');
     } 
 }
 }

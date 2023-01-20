@@ -7,7 +7,7 @@
   if(isset($_POST['updateArticle'])){
     $id = $_GET['postEditId'];
     // die;:
-    $update = $post->update($id, "title updated", "content updated", 2);
+    $update = $post->update($id, $_POST['title'], $_POST['content'], $_POST['category']);
   }
 ?>
 
