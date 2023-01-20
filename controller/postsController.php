@@ -38,7 +38,22 @@ class ArticleController extends Article{
     
 // }
 public function edit(){
-        return $this->editDB($_GET['postEditId']);     
+    return $this->editDB($_GET['postEditId']);     
+}
+
+public function update($id, $title, $content, $category_id) {
+    $query = 'UPDATE articles SET title = :title, content = :content,
+              category_id = :category_id  WHERE id = :id';
+    $stmt = $this->connectPDO()->prepare($query);
+    $stmt->bindParam(':id', $id);
+    // $stmt->bindParam(':admin_id', $admin_id);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':content', $content);
+    // $stmt->bindParam(':image', $image);
+    $stmt->bindParam(':category_id', $category_id);
+    if ($stmt->execute()) {
+        return true;
+    } 
 }
 }
 

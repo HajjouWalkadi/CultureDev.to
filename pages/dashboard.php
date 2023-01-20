@@ -4,6 +4,7 @@ include_once '../functions/script.php';
 $ArticleController = new ArticleController();
 $ArticleController->create();
 $Allarticles = $ArticleController->read();
+// $Allarticles = $ArticleController->update();
 echo isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu']);
 // if(!isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu'])){
 //   // echo "ggggggggggg";
@@ -21,11 +22,12 @@ $ArticleController->delete($_GET['ide']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	  <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.tiny.cloud/1/pwpx476ishkvo2br9a50p1v88j46q425bc452jxv7vkd8auv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <title>Dashboard</title>
 
@@ -112,7 +114,7 @@ $ArticleController->delete($_GET['ide']);
                   <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
                       <i class="fa-solid fa-square text-white fa-lg"></i>
                   </div>
-                  <h5 class="card-title">Posts</h5>
+                  <h5 class="card-title">Total Posts</h5>
                   <p class="card-text justify-content"></p>
                 </div>
               </div>
@@ -122,7 +124,7 @@ $ArticleController->delete($_GET['ide']);
               <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
                       <i class="fa-solid fa-cubes text-white fa-lg"></i>
                   </div>
-                <h5 class="card-title">Categories</h5>
+                <h5 class="card-title">Total for each category</h5>
                 
                 <!-- //   while( $product=mysqli_fetch_assoc($result)){
                     
@@ -139,7 +141,7 @@ $ArticleController->delete($_GET['ide']);
                 <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
                       <i class="fa-solid fa-person text-white fa-lg"></i>
                   </div>
-                  <h5 class="card-title">Developpers</h5>
+                  <h5 class="card-title">Total posts for each Developper</h5>
                  
                   </div>          
               </div>
@@ -250,5 +252,7 @@ $ArticleController->delete($_GET['ide']);
               </div>
               </div>    
   </div>
+
+  <script src="../assets/js/script.js"></script>
 </body>
 </html>
