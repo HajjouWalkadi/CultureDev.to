@@ -44,6 +44,7 @@ if(isset($_POST["signup"])){
     <title>SignUp</title>
 </head>
 <!-- <body class="bgimage row m-0"> -->
+<body class="bgcolor row m-0">
 
 <body class="bgimage">
 
@@ -75,7 +76,7 @@ if(isset($_POST["signup"])){
   
   <!-- Submit button -->
   <button type="submit" name="signup" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign up</button>
-  <p>Already have an account ? <a href="../authentication/signin.php> </a></p>
+  <p> Already have an account  <a href="../authentication/signin.php"> Log in </a> </p>
   <!-- Register buttons -->
   <div class="text-center>
     <p>sign up with:</p>

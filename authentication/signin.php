@@ -9,18 +9,12 @@ $login = new Login();
 
 if(isset($_POST["login"])){
   $result = $login->login($_POST["email"], $_POST["password"]);
-  // die(var_dump($result));
   if(isset($result)){
     $_SESSION['user_name'] = $result['username'];
     header('location:../pages/dashboard.php');
     die(var_dump($_SESSION));
   }
 
-
-  // if($result == 1){
-  //   $_SESSION["login"] = true;
-  //   $_SESSION["id"] = $login->idUser();
-  // }
 }
 ?>
 
