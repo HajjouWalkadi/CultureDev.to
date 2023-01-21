@@ -1,9 +1,9 @@
 <?php
 require '../functions/script.php';
 
-if(!empty($_SESSION["id"])){
-  header("Location: index.php");
-}
+// if(!empty($_SESSION["id"])){
+//   header("Location: signin.php");
+// }
 
 $login = new Login();
 
