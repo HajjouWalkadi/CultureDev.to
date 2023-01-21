@@ -27,16 +27,6 @@ class ArticleController extends Article{
             }
     }
 
-//     public function update(){
-//         if(isset($_POST['saveArticle'])){
-//             extract($_POST);
-//         $result=$this->updateDB($title, $content, $category_id);   
-//         if($result==1){
-//             header('location:../pages/dashboard.php');
-//         }
-//     }
-    
-// }
 public function edit(){
     return $this->editDB($_GET['postEditId']);     
 }
