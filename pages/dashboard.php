@@ -4,22 +4,13 @@ include_once '../functions/script.php';
 $ArticleController = new ArticleController();
 $ArticleController->create();
 $Allarticles = $ArticleController->read();
-// die(var_dump($_SESSION['user_name']));
 if(!isset($_SESSION['user_name'])){
   header('location:../authentication/signin.php');
 }
-// die(var_dump($_SESSION));
-// $Allarticles = $ArticleController->update();
-// echo isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu']);
-// if(!isset($_SESSION['uuuuuuuuuuuuuuuuuuuuuu'])){
-//   // echo "ggggggggggg";
-//   header('Location: ../authentication/signup.php');
-// }
 
 if(isset($_GET['ide'])){
 $ArticleController->delete($_GET['ide']);
 }
-// post , get , session
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +25,13 @@ $ArticleController->delete($_GET['ide']);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tiny.cloud/1/pwpx476ishkvo2br9a50p1v88j46q425bc452jxv7vkd8auv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- ùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùù -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <!-- data table -->
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 
     <title>Dashboard</title>
 
@@ -100,7 +98,7 @@ $ArticleController->delete($_GET['ide']);
                 </div>
             </div>
           <!---------------------------------END SIDBAR------------- -->
-          <!-- Button Add product -->
+          <!-- Button Add post -->
    
       <div class="col">
             <div class="d-flex justify-content-lg-end ps-2 mt-3">
@@ -114,7 +112,7 @@ $ArticleController->delete($_GET['ide']);
             <!-- statistiques -->
             <div class="container-fluid mt-5">
               <div class="row gap-3 p-4" >
-              <!-- Total Product -->
+              <!-- Total Post -->
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3 mb-4">
                 <div class="card-body">
                   <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
@@ -124,7 +122,7 @@ $ArticleController->delete($_GET['ide']);
                   <p class="card-text justify-content"></p>
                 </div>
               </div>
-              <!--Toatal for each category  -->
+              <!--Total for each category  -->
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
               <div class="card-body">
               <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
@@ -138,10 +136,10 @@ $ArticleController->delete($_GET['ide']);
                   <span>keyboards : <span></span></span><br>  
                   <span>mouses : <span></span><br>
                   <span>games : <span></span> <br>      
-                  <span>headphones : <span></span></span><br>        -->
+                  <span>headphones : <span></span></span><br> -->
                 </div>          
               </div>
-              <!-- Products out of stock -->
+              <!-- Total posts for each Developper -->
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
                 <div class="card-body">
                 <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
@@ -157,7 +155,8 @@ $ArticleController->delete($_GET['ide']);
               <!-- Tableau des elements -->
               
               <div class="overflow-scroll tab1 w-100" style="height:27rem;">
-              <table class="table-striped  table table-hover">
+              <table id="table" class="table table-striped table-hover" style="width:100%">
+              <!-- <table class="table-striped  table table-hover"> -->
                 <thead>
                         <tr>
                           <!-- <th scope="col"></th>  -->
