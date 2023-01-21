@@ -1,3 +1,21 @@
+<?php 
+include_once '../controller/categoriesController.php';
+include_once '../functions/script.php';
+$CategorieController = new CategorieController();
+$CategorieController->create();
+$Allcategories = $CategorieController->read();
+
+// if(!isset($_SESSION['user_name'])){
+//   header('location:../authentication/signin.php');
+// }
+if(isset($_GET['idc'])){
+    $CategorieController->delete($_GET['idc']);
+    }
+// if(isset($_GET['ide'])){
+// $ArticleController->delete($_GET['ide']);
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +38,7 @@
     <title>Dashboard</title>
 
   </head>
-  <body style="height: 100vh;">
+<body style="height: 100vh;">
   <!-- ***************************************::NAVBAR::***************************************************** -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -82,3 +100,146 @@
                 </div>
             </div>
           <!---------------------------------END SIDBAR------------- -->
+          <!-- Button Add post -->
+   
+      <div class="col">
+            <div class="d-flex justify-content-lg-end ps-2 mt-3">
+              <button type="button" class="btn btn-dark fw-bold p-2" data-bs-toggle="modal" data-bs-target="#modal-blog">
+                Add Categories
+              </button>
+            </div>
+
+            
+            
+            <!-- statistiques -->
+            <div class="container-fluid mt-5">
+              <div class="row gap-3 p-4" >
+              <!-- Total Post -->
+              <div class="card col-10 col-md-5 col-lg-3 shadow pt-3 mb-4">
+                <div class="card-body">
+                  <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
+                      <i class="fa-solid fa-square text-white fa-lg"></i>
+                  </div>
+                  <h5 class="card-title">Total Posts</h5>
+                  <p class="card-text justify-content"></p>
+                </div>
+              </div>
+              <!--Total for each category  -->
+              <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
+              <div class="card-body">
+              <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
+                      <i class="fa-solid fa-cubes text-white fa-lg"></i>
+                  </div>
+                <h5 class="card-title">Total for each category</h5>
+                
+                <!-- //   while( $product=mysqli_fetch_assoc($result)){
+                    
+                  <span>laptops : <span></span></span><br>      
+                  <span>keyboards : <span></span></span><br>  
+                  <span>mouses : <span></span><br>
+                  <span>games : <span></span> <br>      
+                  <span>headphones : <span></span></span><br> -->
+                </div>          
+              </div>
+              <!-- Total posts for each Developper -->
+              <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
+                <div class="card-body">
+                <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
+                      <i class="fa-solid fa-person text-white fa-lg"></i>
+                  </div>
+                  <h5 class="card-title">Total posts for each Developper</h5>
+                 
+                  </div>          
+              </div>
+            </div>
+            
+      
+              <!-- Tableau des elements -->
+              
+              <div class="overflow-scroll tab1 w-100" style="height:27rem;">
+              <table id="table" class="table table-striped table-hover" style="width:100%">
+              <!-- <table class="table-striped  table table-hover"> -->
+                <thead>
+                        <tr>
+                          <!-- <th scope="col"></th>  -->
+                          <!-- <th scope="col">Image</th> -->
+                          <th scope="col">Id</th>
+                          <th scope="col">Title</th>
+                          
+                          <th scope="col">Edit</th>
+                          <th scope="col">Delete</th>
+                        </tr>
+                </thead>
+                <tbody>
+                <?php 
+                   if(empty($Allcategories))
+                       echo '<tr class="align-middle"><th class="col-3">No result found.</th> </tr>';
+                   else{foreach($Allcategories as $categorie){?>
+                      
+                    <tr>
+                        <!-- <td><img src="../assets/upload/" style="width: 90px;"></td> -->
+                      <th scope="row"><?=$categorie['id']; ?></th>
+                      <td><?=$categorie['title']; ?></td>
+                      
+                      <td><a name="editArticle" href="editPosts.php?postEditId=<?=$categorie['id'];?>"><span onclick="editProduct()" class="btn btn-sm btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
+                     
+                            
+                      <td>
+                      <!-- <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger">Delete</span></a> -->
+                      <a href="categories.php?idc=<?=$categorie['id']; ?>"><span class="btn btn-sm btn-danger"><i class="fas fa-trash text-white"></i></span></a>
+                            
+                        <!-- <a href="#" onclick="if(confirm('Are you sure want to delete this record !')){ document.querySelector('#delete-product-').submit();}"><span class="btn btn-danger text-black"><i class="fas fa-trash text-white"></i></span></a>
+                              <form action="" method="post" id="delete-product-">
+                                <input type="hidden" name="delete" value="">
+                              </form> -->
+                            </td>
+                          </tr>
+                          <?php }
+                   }?>
+                        
+                  </tbody>
+              </table>   
+            </div>
+
+            <!-- Game Product MODAL -->
+
+              <div class="modal fade" id="modal-blog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <form action="" method="POST" id="form-blog" enctype="multipart/form-data">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Add Categories</h5>
+                        <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                      </div>
+                      <div class="modal-body">
+
+                        <!-- This Input Allows Storing Product Index  -->
+                        <input type="hidden" id="blog-id" name="blogId">
+                        <div class="mb-3">
+                          <label class="form-label">Title</label>
+                          <input type="text" class="form-control" name="title" id="blog-title" required/>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Category</label>
+                          <select class="form-select" name= "category" id="blog-category" >
+                            <option value="" selected disabled>Please select</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                        </div>    
+                        </div>
+                      <div class="modal-footer">
+                        <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+                        <button type="submit" name="saveCategorie" class="btn btn-primary task-action-btn" id="saveCategorie">Save</button>
+                      </div> 
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>    
+  </div>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>
