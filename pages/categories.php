@@ -2,14 +2,14 @@
 include_once '../controller/categoriesController.php';
 include_once '../functions/script.php';
 $CategorieController = new CategorieController();
-$CategorieController->create();
-$Allcategories = $CategorieController->read();
+$CategorieController->createCa();
+$Allcategories = $CategorieController->readCa();
 
 // if(!isset($_SESSION['user_name'])){
 //   header('location:../authentication/signin.php');
 // }
 if(isset($_GET['idc'])){
-    $CategorieController->delete($_GET['idc']);
+    $CategorieController->deleteCa($_GET['idc']);
     }
 // if(isset($_GET['ide'])){
 // $ArticleController->delete($_GET['ide']);
@@ -28,18 +28,18 @@ if(isset($_GET['idc'])){
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tiny.cloud/1/pwpx476ishkvo2br9a50p1v88j46q425bc452jxv7vkd8auv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <!--  data table -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+     
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 
-    <title>Dashboard</title>
+    <title>Categories</title>
 
   </head>
 <body style="height: 100vh;">
-  <!-- ***************************************::NAVBAR::***************************************************** -->
+  <!-- ***************************************::NAVBAR::*****************************************************  -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       
@@ -103,7 +103,7 @@ if(isset($_GET['idc'])){
           <!-- Button Add post -->
    
       <div class="col">
-            <div class="d-flex justify-content-lg-end ps-2 mt-3">
+            <div class="d-flex justify-content-lg-end ps-2 mt-5">
               <button type="button" class="btn btn-dark fw-bold p-2" data-bs-toggle="modal" data-bs-target="#modal-blog">
                 Add Categories
               </button>
@@ -112,9 +112,8 @@ if(isset($_GET['idc'])){
             
             
             <!-- statistiques -->
-            <div class="container-fluid mt-5">
+            <!-- <div class="container-fluid mt-5">
               <div class="row gap-3 p-4" >
-              <!-- Total Post -->
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3 mb-4">
                 <div class="card-body">
                   <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
@@ -124,24 +123,14 @@ if(isset($_GET['idc'])){
                   <p class="card-text justify-content"></p>
                 </div>
               </div>
-              <!--Total for each category  -->
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
               <div class="card-body">
               <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
                       <i class="fa-solid fa-cubes text-white fa-lg"></i>
                   </div>
                 <h5 class="card-title">Total for each category</h5>
-                
-                <!-- //   while( $product=mysqli_fetch_assoc($result)){
-                    
-                  <span>laptops : <span></span></span><br>      
-                  <span>keyboards : <span></span></span><br>  
-                  <span>mouses : <span></span><br>
-                  <span>games : <span></span> <br>      
-                  <span>headphones : <span></span></span><br> -->
                 </div>          
               </div>
-              <!-- Total posts for each Developper -->
               <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
                 <div class="card-body">
                 <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
@@ -152,20 +141,16 @@ if(isset($_GET['idc'])){
                   </div>          
               </div>
             </div>
-            
+             -->
       
               <!-- Tableau des elements -->
               
-              <div class="overflow-scroll tab1 w-100" style="height:27rem;">
-              <table id="table" class="table table-striped table-hover" style="width:100%">
-              <!-- <table class="table-striped  table table-hover"> -->
+              <div class="overflow-scroll tab1 w-100 mt-5" style="height:27rem;">
+              <table id="tableCategorie" class="table table-striped table-hover" style="width:100%">
                 <thead>
                         <tr>
-                          <!-- <th scope="col"></th>  -->
-                          <!-- <th scope="col">Image</th> -->
                           <th scope="col">Id</th>
                           <th scope="col">Title</th>
-                          
                           <th scope="col">Edit</th>
                           <th scope="col">Delete</th>
                         </tr>
@@ -177,15 +162,13 @@ if(isset($_GET['idc'])){
                    else{foreach($Allcategories as $categorie){?>
                       
                     <tr>
-                        <!-- <td><img src="../assets/upload/" style="width: 90px;"></td> -->
                       <th scope="row"><?=$categorie['id']; ?></th>
                       <td><?=$categorie['title']; ?></td>
                       
-                      <td><a name="editArticle" href="editPosts.php?postEditId=<?=$categorie['id'];?>"><span onclick="editProduct()" class="btn btn-sm btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
+                      <td><a name="editCategory" href="editCategories.php?categoryEditId=<?=$categorie['id'];?>"><span onclick="editProduct()" class="btn btn-sm btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
                      
                             
                       <td>
-                      <!-- <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger">Delete</span></a> -->
                       <a href="categories.php?idc=<?=$categorie['id']; ?>"><span class="btn btn-sm btn-danger"><i class="fas fa-trash text-white"></i></span></a>
                             
                         <!-- <a href="#" onclick="if(confirm('Are you sure want to delete this record !')){ document.querySelector('#delete-product-').submit();}"><span class="btn btn-danger text-black"><i class="fas fa-trash text-white"></i></span></a>
@@ -219,7 +202,7 @@ if(isset($_GET['idc'])){
                           <label class="form-label">Title</label>
                           <input type="text" class="form-control" name="title" id="blog-title" required/>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                           <label class="form-label">Category</label>
                           <select class="form-select" name= "category" id="blog-category" >
                             <option value="" selected disabled>Please select</option>
@@ -227,7 +210,7 @@ if(isset($_GET['idc'])){
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                           </select>
-                        </div>    
+                        </div>     -->
                         </div>
                       <div class="modal-footer">
                         <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>

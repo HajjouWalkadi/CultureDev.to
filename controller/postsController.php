@@ -33,7 +33,7 @@ public function edit(){
 
 public function update($id, $title, $content, $category_id) {
     $query = 'UPDATE articles SET title = :title, content = :content,
-              category_id = :category_id  WHERE id = :id';
+              categorie_id = :category_id  WHERE id = :id';
     $stmt = $this->connectPDO()->prepare($query);
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':title', $title);

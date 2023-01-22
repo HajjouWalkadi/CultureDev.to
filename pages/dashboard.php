@@ -4,6 +4,8 @@ include_once '../functions/script.php';
 $ArticleController = new ArticleController();
 $ArticleController->create();
 $Allarticles = $ArticleController->read();
+// echo "article controller read : ";
+// var_dump($ArticleController->read());
 if(!isset($_SESSION['user_name'])){
   header('location:../authentication/signin.php');
 }
@@ -11,6 +13,7 @@ if(!isset($_SESSION['user_name'])){
 if(isset($_GET['ide'])){
 $ArticleController->delete($_GET['ide']);
 }
+// var_dump($ArticleController);
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +29,21 @@ $ArticleController->delete($_GET['ide']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tiny.cloud/1/pwpx476ishkvo2br9a50p1v88j46q425bc452jxv7vkd8auv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <!--  data table -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-
-    <title>Dashboard</title>
+      <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css"> -->
+      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> -->
 
   </head>
 <body style="height: 100vh;">
@@ -227,9 +238,9 @@ $ArticleController->delete($_GET['ide']);
                           <label class="form-label">Category</label>
                           <select class="form-select" name= "category" id="blog-category" >
                             <option value="" selected disabled>Please select</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="7">One</option>
+                            <option value="8">Two</option>
+                            <option value="9">Three</option>
                           </select>
                         </div>
                         

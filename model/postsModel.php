@@ -3,7 +3,7 @@ include_once '../classes/database.php';
 class Article extends Database{
 
     public function readDB(){
-        $query = 'SELECT articles.* , categorie.title as nameCategorie FROM articles INNER JOIN categorie on categorie.id=articles.category_id ';
+        $query = 'SELECT articles.* , categorie.title as nameCategorie FROM articles INNER JOIN categorie on categorie.id=articles.categorie_id ';
         $stmt = $this->connectPDO()->prepare($query);
         $stmt->execute();
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -21,7 +21,7 @@ class Article extends Database{
 
     public function createDB($title, $content, $category_id) {
       
-        $sql = "INSERT INTO articles (title,content,category_id) VALUES (?,?,?)";
+        $sql = "INSERT INTO articles (title,content,categorie_id) VALUES (?,?,?)";
         $stmt = $this->connectPDO()->prepare($sql);
         $stmt->execute([$title,$content,$category_id]);
         return 1;
@@ -52,4 +52,4 @@ class Article extends Database{
         }
         
     }
-}
+};

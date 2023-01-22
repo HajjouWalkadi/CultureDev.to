@@ -37,9 +37,8 @@ class Categorie extends Database {
     //     return 1;
     // }
 
-
-    public function editDB($id) {
-        $query = 'SELECT * FROM articles WHERE id = :id';
+    public function editCaDB($id) {
+        $query = 'SELECT * FROM categorie WHERE id = :id';
         $stmt = $this->connectPDO()->prepare($query);
         $stmt->bindParam(':id', $id);
         // $stmt->bindParam(':admin_id', $admin_id);
@@ -47,6 +46,15 @@ class Categorie extends Database {
         $stmt->execute();
         return $stmt->fetch();
     }
+    // public function editDB($id) {
+    //     $query = 'SELECT * FROM articles WHERE id = :id';
+    //     $stmt = $this->connectPDO()->prepare($query);
+    //     $stmt->bindParam(':id', $id);
+    //     // $stmt->bindParam(':admin_id', $admin_id);
+    //     // $stmt->bindParam(':image', $image);
+    //     $stmt->execute();
+    //     return $stmt->fetch();
+    // }
 
     public function deleteCategorieDB($id) {
         try{

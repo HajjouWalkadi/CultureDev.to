@@ -4,14 +4,14 @@ include_once '../model/categoriesModel.php';
 
 class CategorieController extends Categorie{
     
-    public function read(){
+    public function readCa(){
         
         $result=$this->readCategorieDB();
         return $result;
         
     } 
     
-    public function create(){
+    public function createCa(){
         if(isset($_POST['saveCategorie'])){
             extract($_POST);
             $result=$this->createCategorieDB($title);
@@ -20,7 +20,7 @@ class CategorieController extends Categorie{
             }
         }
     }
-    public function delete($x){
+    public function deleteCa($x){
         $result= $this->deleteCategorieDB($x);
         if($result==1){
             header('location:../pages/categories.php');
@@ -28,7 +28,7 @@ class CategorieController extends Categorie{
     }
 
 public function edit(){
-    return $this->editDB($_GET['postEditId']);     
+    return $this->editCaDB($_GET['categoryEditId']);     
 }
 
 public function update($id, $title, $content, $category_id) {

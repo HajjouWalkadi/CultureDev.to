@@ -44,9 +44,9 @@
         <label class="form-label">Category</label>
         <select class="form-select" name= "category" id="blog-category" >
           <option value="" selected disabled>Please select</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="7">One</option>
+          <option value="8">Two</option>
+          <option value="9">Three</option>
         </select>
       </div>
       
