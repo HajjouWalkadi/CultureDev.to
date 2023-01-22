@@ -31,17 +31,13 @@ public function edit(){
     return $this->editCaDB($_GET['categoryEditId']);     
 }
 
-public function update($id, $title, $content, $category_id) {
-    $query = 'UPDATE articles SET title = :title, content = :content,
-              category_id = :category_id  WHERE id = :id';
+public function updateCa($id, $title) {
+    $query = 'UPDATE categorie SET title = :title WHERE id = :id';
     $stmt = $this->connectPDO()->prepare($query);
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':content', $content);
-    // $stmt->bindParam(':image', $image);
-    $stmt->bindParam(':category_id', $category_id);
     if ($stmt->execute()) {
-        header('location:dashboard.php');
+        header('location:categories.php');
     } 
 }
 }

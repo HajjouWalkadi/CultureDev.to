@@ -1,14 +1,13 @@
 
 <?php
-  include_once '../controller/postsController.php';
-  $post = new ArticleController();
-  $article = $post->edit();
-  // die(var_dump($post));
+  include_once '../controller/categoriesController.php';
+  $post = new CategorieController();
+  $categorie = $post->edit();
   if(isset($_POST['updateCategory'])){
     $id = $_GET['categoryEditId'];
     
     // die;:
-    $update = $post->update($id, $_POST['title'], $_POST['content'], $_POST['category']);
+    $update = $post->updateCa($id, $_POST['title']);
   }
 ?>
 <!doctype html>
@@ -32,7 +31,7 @@
       <input type="hidden" id="blog-id" name="blogId">
       <div class="mb-3">
         <label class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" id="blog-title" value="<?=$article['title']?>" required/>
+        <input type="text" class="form-control" name="title" id="blog-title" value="<?=$categorie['title']?>" required/>
       </div>
       </div>
     <div class="modal-footer">
