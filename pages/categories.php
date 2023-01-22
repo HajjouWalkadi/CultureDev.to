@@ -52,7 +52,7 @@ if(isset($_GET['idc'])){
       <div class="collapse navbar-collapse col-2 " id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+            <a class="nav-link active" aria-current="page" href="../pages/dashboard.php">Dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" href="#">Blogs</a>
@@ -84,10 +84,15 @@ if(isset($_GET['idc'])){
                           </a>
                       </li>
                       <li>
-                          <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                          <a href="../pages/dashboard.php"  class="nav-link px-0 align-middle">
                               <i class="fas fa-dashboard"></i> <span class="ms-1 d-none d-md-inline text-white">Dashboard</span> </a>
                         
-                      </li>                  
+                      </li>    
+                      <li>
+                          <a href="../pages/categories.php" class="nav-link px-0 align-middle">
+                              <i class="fas fa-cubes"></i> <span class="ms-1 d-none d-md-inline text-white">Categories</span> </a>
+                        
+                      </li>                 
                       
                       <li>
                           <a href="../authentication/logout.php" class="nav-link px-0 align-middle">
@@ -108,41 +113,6 @@ if(isset($_GET['idc'])){
                 Add Categories
               </button>
             </div>
-
-            
-            
-            <!-- statistiques -->
-            <!-- <div class="container-fluid mt-5">
-              <div class="row gap-3 p-4" >
-              <div class="card col-10 col-md-5 col-lg-3 shadow pt-3 mb-4">
-                <div class="card-body">
-                  <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
-                      <i class="fa-solid fa-square text-white fa-lg"></i>
-                  </div>
-                  <h5 class="card-title">Total Posts</h5>
-                  <p class="card-text justify-content"></p>
-                </div>
-              </div>
-              <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
-              <div class="card-body">
-              <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
-                      <i class="fa-solid fa-cubes text-white fa-lg"></i>
-                  </div>
-                <h5 class="card-title">Total for each category</h5>
-                </div>          
-              </div>
-              <div class="card col-10 col-md-5 col-lg-3 shadow pt-3  mb-4">
-                <div class="card-body">
-                <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
-                      <i class="fa-solid fa-person text-white fa-lg"></i>
-                  </div>
-                  <h5 class="card-title">Total posts for each Developper</h5>
-                 
-                  </div>          
-              </div>
-            </div>
-             -->
-      
               <!-- Tableau des elements -->
               
               <div class="overflow-scroll tab1 w-100 mt-5" style="height:27rem;">

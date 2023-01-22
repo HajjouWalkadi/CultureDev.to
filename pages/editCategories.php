@@ -35,7 +35,7 @@
       </div>
       </div>
     <div class="modal-footer">
-      <a href="categories.php" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+      <a href="../pages/categories.php" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
       <button type="submit" name="updateCategory" class="btn btn-primary task-action-btn" id="updateCategory">Update</button>
     </div> 
   </form>

@@ -92,8 +92,13 @@ $ArticleController->delete($_GET['ide']);
                           </a>
                       </li>
                       <li>
-                          <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                          <a href="../pages/dashboard.php"  class="nav-link px-0 align-middle">
                               <i class="fas fa-dashboard"></i> <span class="ms-1 d-none d-md-inline text-white">Dashboard</span> </a>
+                        
+                      </li>                  
+                      <li>
+                          <a href="../pages/categories.php" class="nav-link px-0 align-middle">
+                              <i class="fas fa-cubes"></i> <span class="ms-1 d-none d-md-inline text-white">Categories</span> </a>
                         
                       </li>                  
                       
