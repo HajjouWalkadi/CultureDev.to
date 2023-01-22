@@ -22,8 +22,8 @@
 <div class="col-md-7 col-12 mx-auto p-3 shadow shadow-sm bg-white mt-3">
   <form action="editCategories.php?categoryEditId=<?php echo $_GET['categoryEditId'] ;?>" method="POST" id="form-blog" enctype="multipart/form-data">
     <div class="modal-header">
-      <h5 class="modal-title">Add Category</h5>
-      <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+      <h5 class="modal-title">Edit Category</h5>
+      <a href="../pages/categories.php" class="btn-close"></a>
     </div>
     <div class="modal-body">
 
@@ -35,7 +35,7 @@
       </div>
       </div>
     <div class="modal-footer">
-      <a href="../pages/categories.php" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+      <a href="../pages/categories.php" class="btn btn-white" >Cancel</a>
       <button type="submit" name="updateCategory" class="btn btn-primary task-action-btn" id="updateCategory">Update</button>
     </div> 
   </form>

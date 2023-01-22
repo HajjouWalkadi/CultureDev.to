@@ -24,8 +24,8 @@
 <div class="col-md-7 col-12 mx-auto p-3 shadow shadow-sm bg-white mt-3">
   <form action="editPosts.php?postEditId=<?php echo $_GET['postEditId'] ;?>" method="POST" id="form-blog" enctype="multipart/form-data">
     <div class="modal-header">
-      <h5 class="modal-title">Add Posts</h5>
-      <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+      <h5 class="modal-title">Edit Post</h5>
+      <a href="dashboard.php" class="btn-close" ></a>
     </div>
     <div class="modal-body">
 
@@ -64,7 +64,7 @@
       
       </div>
     <div class="modal-footer">
-      <a href="dashboard.php" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+      <a href="dashboard.php" class="btn btn-white" >Cancel</a>
       <button type="submit" name="updateArticle" class="btn btn-primary task-action-btn" id="updateArticle">Update</button>
     </div> 
   </form>
