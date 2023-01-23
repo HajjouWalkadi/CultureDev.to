@@ -165,6 +165,7 @@ $ArticleController->delete($_GET['ide']);
                           <!-- <th scope="col"></th>  -->
                           <!-- <th scope="col">Image</th> -->
                           <th scope="col">Id</th>
+                          <th scope="col">Image</th>
                           <th scope="col">Title</th>
                           <th scope="col">Category</th>
                           <th scope="col">Description</th>
@@ -181,22 +182,16 @@ $ArticleController->delete($_GET['ide']);
                     <tr>
                         <!-- <td><img src="../assets/upload/" style="width: 90px;"></td> -->
                       <th scope="row"><?=$article['id']; ?></th>
+                      <td class='align-middle'><img src="../assets/upload/<?=$article['image'];?>" style="width:3rem;"></td>
                       <td><?=$article['title']; ?></td>
                       <td><?=$article['nameCategorie']; ?></td>
                       <td><?=$article['content']; ?></td>
                       <td><a name="editArticle" href="editPosts.php?postEditId=<?=$article['id'];?>"><span onclick="editProduct()" class="btn btn-sm btn-success text-black"><i class="fas fa-edit text-white"></i></span></a></td>
-                     
-                            
+
                       <td>
-                      <!-- <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger">Delete</span></a> -->
-                      <a href="dashboard.php?ide=<?=$article['id']; ?>"><span class="btn btn-sm btn-danger"><i class="fas fa-trash text-white"></i></span></a>
-                            
-                        <!-- <a href="#" onclick="if(confirm('Are you sure want to delete this record !')){ document.querySelector('#delete-product-').submit();}"><span class="btn btn-danger text-black"><i class="fas fa-trash text-white"></i></span></a>
-                              <form action="" method="post" id="delete-product-">
-                                <input type="hidden" name="delete" value="">
-                              </form> -->
-                            </td>
-                          </tr>
+                      <a onclick="if(confirm('Are you sure want to delete this record !')){document.location.href='dashboard.php?ide=<?=$article['id']; ?>'}"><span class="btn btn-sm btn-danger"><i class="fas fa-trash text-white"></i></span></a>
+                      </td>
+                    </tr>
                           <?php }
                    }?>
                         
@@ -204,12 +199,13 @@ $ArticleController->delete($_GET['ide']);
               </table>   
             </div>
 
-            <!-- Game Product MODAL -->
+            <!-- Blog Post MODAL -->
 
               <div class="modal fade" id="modal-blog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <form action="" method="POST" id="form-blog" enctype="multipart/form-data">
+                      <div>
                       <div class="modal-header">
                         <h5 class="modal-title">Add Posts</h5>
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -220,41 +216,34 @@ $ArticleController->delete($_GET['ide']);
                         <input type="hidden" id="blog-id" name="blogId">
                         <div class="mb-3">
                           <label class="form-label">Image</label>
-                          <input type="file" class="form-control" name="my_image" id="blog-image"/>
+                          <input type="file" class="form-control" name="my_image[]" id="blog-image"/>
                         </div>
                         
                         <div class="mb-3">
                           <label class="form-label">Title</label>
-                          <input type="text" class="form-control" name="title" id="blog-title" required/>
+                          <input type="text" class="form-control" name="title[]" id="blog-title" required/>
                         </div>
                         <div class="mb-3">
                           <label class="form-label">Category</label>
-                          <select class="form-select" name= "category" id="blog-category" >
+                          <select class="form-select" id="CategorieInput" name= "category[]" id="blog-category" >
                             <option value="" selected disabled>Please select</option>
                             <?php foreach($Allcategories AS $categorie){
                         echo '<option value="'.$categorie['id'].'">'.$categorie['title'].'</option>';
                                     }?>
-
-                            <!-- <option value="7">One</option>
-                            <option value="8">Two</option>
-                            <option value="9">Three</option> -->
                           </select>
                         </div>
                         
                           <div class="mb-3">
                             <label class="form-label">Content</label>
                             <!-- <input type="text" class="form-control" name="content" id="blog-description" required/> -->
-                            <textarea class="form-control" name="content" id="blog-description" placeholder="Content..."><?php if(isset($row)) { echo $row['content']; } ?></textarea>
+                            <textarea class="form-control" name="content[]" id="blog-description" placeholder="Content..."></textarea>
                           </div>
-                          
-                          
-                          <!-- <div class="mb-3">
-                            <label class="form-label">Price</label>
-                            <input type="text" class="form-control" name="productPrice" id="blog-quantity" required/>
-                          </div> -->
-                        
                         </div>
+                      </div>
+                        <div id="modal2"></div>
                       <div class="modal-footer">
+                      <input type="hidden" name="txtLenght" id="txtLenght">
+                      <button type="submit" onclick="savemultiple()" id="saveArticles" name="saveArticles" class="btn btn-primary task-action-btn" id="saveArticles">Save Other</button>
                         <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
                         <button type="submit" name="saveArticle" class="btn btn-primary task-action-btn" id="saveArticle">Save</button>
                       </div> 
@@ -266,5 +255,6 @@ $ArticleController->delete($_GET['ide']);
   </div>
 
   <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>

@@ -133,12 +133,8 @@ if(isset($_GET['idc'])){
                      
                             
                       <td>
-                      <a href="categories.php?idc=<?=$categorie['id']; ?>"><span class="btn btn-sm btn-danger"><i class="fas fa-trash text-white"></i></span></a>
-                            
-                        <!-- <a href="#" onclick="if(confirm('Are you sure want to delete this record !')){ document.querySelector('#delete-product-').submit();}"><span class="btn btn-danger text-black"><i class="fas fa-trash text-white"></i></span></a>
-                              <form action="" method="post" id="delete-product-">
-                                <input type="hidden" name="delete" value="">
-                              </form> -->
+                      <a onclick="if(confirm('Are you sure want to delete this record !')){document.location.href='categories.php?idc=<?=$categorie['id']; ?>'}"><span class="btn btn-sm btn-danger"><i class="fas fa-trash text-white"></i></span></a>
+                      
                             </td>
                           </tr>
                           <?php }
