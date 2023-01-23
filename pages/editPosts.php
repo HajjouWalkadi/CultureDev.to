@@ -1,12 +1,13 @@
 
 <?php
   include_once '../controller/postsController.php';
+  include_once '../controller/categoriesController.php';
+$CategorieController = new CategorieController();
+$Allcategories = $CategorieController->readCa();
   $post = new ArticleController();
   $article = $post->edit();
-  // die(var_dump($post));
   if(isset($_POST['updateArticle'])){
     $id = $_GET['postEditId'];
-    // die;:
     $update = $post->update($id, $_POST['title'], $_POST['content'], $_POST['category']);
   }
 ?>
@@ -25,11 +26,11 @@
   <form action="editPosts.php?postEditId=<?php echo $_GET['postEditId'] ;?>" method="POST" id="form-blog" enctype="multipart/form-data">
     <div class="modal-header">
       <h5 class="modal-title">Edit Post</h5>
-      <a href="dashboard.php" class="btn-close" ></a>
+      <a href="dashboard.php" class="btn-close"></a>
     </div>
     <div class="modal-body">
 
-      <!-- This Input Allows Storing Product Index  -->
+      <!-- This Input Allows Storing Post Index  -->
       <input type="hidden" id="blog-id" name="blogId">
       <div class="mb-3">
         <label class="form-label">Image</label>
@@ -43,25 +44,17 @@
       <div class="mb-3">
         <label class="form-label">Category</label>
         <select class="form-select" name= "category" id="blog-category" >
-          <option value="" selected disabled>Please select</option>
-          <option value="7">One</option>
-          <option value="8">Two</option>
-          <option value="9">Three</option>
+        <option value="" selected disabled>Please select</option>
+              <?php foreach($Allcategories AS $categorie){
+          echo '<option value="'.$categorie['id'].'">'.$categorie['title'].'</option>';
+                      }?>
         </select>
       </div>
       
         <div class="mb-3">
           <label class="form-label">Content</label>
-          <!-- <input type="text" class="form-control" name="content" id="blog-description" required/> -->
           <textarea class="form-control" name="content" id="blog-description" placeholder="Content..."><?=$article['content'];?></textarea>
         </div>
-        
-        
-        <!-- <div class="mb-3">
-          <label class="form-label">Price</label>
-          <input type="text" class="form-control" name="productPrice" id="blog-quantity" required/>
-        </div> -->
-      
       </div>
     <div class="modal-footer">
       <a href="dashboard.php" class="btn btn-white" >Cancel</a>
@@ -70,6 +63,6 @@
   </form>
 </div>
 
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -5,15 +5,9 @@ $CategorieController = new CategorieController();
 $CategorieController->createCa();
 $Allcategories = $CategorieController->readCa();
 
-// if(!isset($_SESSION['user_name'])){
-//   header('location:../authentication/signin.php');
-// }
 if(isset($_GET['idc'])){
     $CategorieController->deleteCa($_GET['idc']);
     }
-// if(isset($_GET['ide'])){
-// $ArticleController->delete($_GET['ide']);
-// }
 ?>
 
 <!DOCTYPE html>
@@ -172,15 +166,6 @@ if(isset($_GET['idc'])){
                           <label class="form-label">Title</label>
                           <input type="text" class="form-control" name="title" id="blog-title" required/>
                         </div>
-                        <!-- <div class="mb-3">
-                          <label class="form-label">Category</label>
-                          <select class="form-select" name= "category" id="blog-category" >
-                            <option value="" selected disabled>Please select</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
-                        </div>     -->
                         </div>
                       <div class="modal-footer">
                         <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>

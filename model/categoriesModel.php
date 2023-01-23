@@ -7,7 +7,6 @@ class Categorie extends Database {
     // méthodes CRUD
     public function createCategorieDB($title) {
         $query = $this->connectPDO()->prepare('INSERT INTO categorie (title) VALUES (?)');
-        // $query->bindValue(':title', $title, PDO::PARAM_STR);
         $query->execute([$title]);
         return 1;
     }
@@ -29,32 +28,13 @@ class Categorie extends Database {
         return $stmt;
     }
 
-    // public function createDB($title, $content, $category_id) {
-      
-    //     $sql = "INSERT INTO articles (title,content,category_id) VALUES (?,?,?)";
-    //     $stmt = $this->connectPDO()->prepare($sql);
-    //     $stmt->execute([$title,$content,$category_id]);
-    //     return 1;
-    // }
-
     public function editCaDB($id) {
         $query = 'SELECT * FROM categorie WHERE id = :id';
         $stmt = $this->connectPDO()->prepare($query);
         $stmt->bindParam(':id', $id);
-        // $stmt->bindParam(':admin_id', $admin_id);
-        // $stmt->bindParam(':image', $image);
         $stmt->execute();
         return $stmt->fetch();
     }
-    // public function editDB($id) {
-    //     $query = 'SELECT * FROM articles WHERE id = :id';
-    //     $stmt = $this->connectPDO()->prepare($query);
-    //     $stmt->bindParam(':id', $id);
-    //     // $stmt->bindParam(':admin_id', $admin_id);
-    //     // $stmt->bindParam(':image', $image);
-    //     $stmt->execute();
-    //     return $stmt->fetch();
-    // }
 
     public function deleteCategorieDB($id) {
         try{

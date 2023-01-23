@@ -1,11 +1,12 @@
 <?php 
 include_once '../controller/postsController.php';
 include_once '../functions/script.php';
+include_once '../controller/categoriesController.php';
+$CategorieController = new CategorieController();
+$Allcategories = $CategorieController->readCa();
 $ArticleController = new ArticleController();
 $ArticleController->create();
 $Allarticles = $ArticleController->read();
-// echo "article controller read : ";
-// var_dump($ArticleController->read());
 if(!isset($_SESSION['user_name'])){
   header('location:../authentication/signin.php');
 }
@@ -13,7 +14,6 @@ if(!isset($_SESSION['user_name'])){
 if(isset($_GET['ide'])){
 $ArticleController->delete($_GET['ide']);
 }
-// var_dump($ArticleController);
 ?>
 
 <!DOCTYPE html>
@@ -34,16 +34,6 @@ $ArticleController->delete($_GET['ide']);
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-      <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-      <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css"> -->
-      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-      <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> -->
 
   </head>
 <body style="height: 100vh;">
@@ -121,8 +111,6 @@ $ArticleController->delete($_GET['ide']);
                 Add Posts
               </button>
             </div>
-
-            
             
             <!-- statistiques -->
             <div class="container-fluid mt-5">
@@ -243,9 +231,13 @@ $ArticleController->delete($_GET['ide']);
                           <label class="form-label">Category</label>
                           <select class="form-select" name= "category" id="blog-category" >
                             <option value="" selected disabled>Please select</option>
-                            <option value="7">One</option>
+                            <?php foreach($Allcategories AS $categorie){
+                        echo '<option value="'.$categorie['id'].'">'.$categorie['title'].'</option>';
+                                    }?>
+
+                            <!-- <option value="7">One</option>
                             <option value="8">Two</option>
-                            <option value="9">Three</option>
+                            <option value="9">Three</option> -->
                           </select>
                         </div>
                         
