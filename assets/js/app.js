@@ -8,7 +8,7 @@ function savemultiple(){
     <input type="hidden" id="blog-id" name="blogId">
     <div class="mb-3">
       <label class="form-label">Image</label>
-      <input type="file" class="form-control" name="my_image[]" id="blog-image"/>
+      <input  type="file" class="form-control" name="my_image[]" id="blog-image"/>
     </div>
     
     <div class="mb-3">

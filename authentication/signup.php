@@ -56,26 +56,27 @@ if(isset($_POST["signup"])){
   <h1 class="text-center mt-2">Create An Account</h1>
 
   <div class="form-outline mb-4">
-    <input type="text" id="userName" name="userName" class="form-control" placeholder="Enter username"/>
-    <label class="form-label" for="form2Example1">Username</label>
+    <input onkeyup="validation(this)" type="text" id="userName" name="userName" class="form-control " placeholder="Enter username"/>
+    <label  class="form-label" for="form2Example1">Username</label>
+
   </div>
   <div class="form-outline mb-4">
-    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your address email" data-parsley-type="email"/>
+    <input onkeyup="validation(this)" type="email" id="email" name="email" class="form-control" placeholder="Enter your address email" data-parsley-type="email"/>
     <label class="form-label" for="form2Example2">Email address</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="password" name="password" class="form-control" placeholder="Password"/>
+    <input onkeyup="validation(this)" type="password" id="password" name="password" class="form-control" placeholder="Password"/>
     <label class="form-label" for="form2Example3">Password</label>
   </div>
   <div class="form-outline mb-4">
-    <input type="password" id="passwordCheck" name="passwordCheck" class="form-control" placeholder="Confirm Password"/>
+    <input onkeyup="validateCheckPassword(this)" type="password" id="passwordCheck" name="passwordCheck" class="form-control" placeholder="Confirm Password"/>
     <label class="form-label" for="form2Example4">Confirm Password</label>
   </div>
   
   <!-- Submit button -->
-  <button type="submit" name="signup" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign up</button>
+  <button type="submit" name="signup" id="register-id" class="btn btn-primary btn-block mb-4 text-center col-4 offset-4">Sign up</button>
   <p> Already have an account  <a href="../authentication/signin.php"> Log in </a> </p>
   <!-- Register buttons -->
   <div class="text-center>
@@ -98,6 +99,7 @@ if(isset($_POST["signup"])){
   </div>
 </form>
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/validation.js"></script>
 
 </body>
 </html>
