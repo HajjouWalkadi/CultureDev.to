@@ -43,16 +43,11 @@ if(isset($_POST["signup"])){
     
     <title>SignUp</title>
 </head>
-<<<<<<< HEAD
 <!-- <body class="bgimage row m-0"> -->
 <body class="bgcolor row m-0">
 
 <body class="bgimage">
 
-=======
-<body class="bgimage row m-0">
-  
->>>>>>> 70f582c (sign in & sign up finished)
 <form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" method="post">
   <!-- Email input -->
   <div class="text-center">
