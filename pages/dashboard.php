@@ -156,11 +156,8 @@ $ArticleController->delete($_GET['ide']);
               
               <div class="overflow-scroll tab1 w-100" style="height:27rem;">
               <table id="table" class="table table-striped table-hover" style="width:100%">
-              <!-- <table class="table-striped  table table-hover"> -->
                 <thead>
                         <tr>
-                          <!-- <th scope="col"></th>  -->
-                          <!-- <th scope="col">Image</th> -->
                           <th scope="col">Id</th>
                           <th scope="col">Image</th>
                           <th scope="col">Title</th>
@@ -177,7 +174,6 @@ $ArticleController->delete($_GET['ide']);
                    else{foreach($Allarticles as $article){?>
                       
                     <tr>
-                        <!-- <td><img src="../assets/upload/" style="width: 90px;"></td> -->
                       <th scope="row"><?=$article['id']; ?></th>
                       <td class='align-middle'><img src="../assets/upload/<?=$article['image'];?>" style="width:3rem;"></td>
                       <td><?=$article['title']; ?></td>

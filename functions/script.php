@@ -4,8 +4,6 @@ include_once '../classes/database.php';
 session_start();
 
 class Register extends Database{
-
-// <SCRIPT>VG htmlentities() &lt;script>
   public function registration($username, $email, $password, $confirmpassword){
     $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE username = '$username' OR email = '$email'");
     $stmt->execute();
@@ -53,9 +51,4 @@ class Select extends Database{
     $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }
-
-  // public function selectUserById($id){
-  //   $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE id = $id");
-  //   return $stmt->execute();
-  // }
 }

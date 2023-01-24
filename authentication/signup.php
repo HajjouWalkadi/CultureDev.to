@@ -51,7 +51,6 @@ if(isset($_POST["signup"])){
 <form class=" col-lg-4 col-md-5 col-11 m-auto p-2 px-4 signupform" method="post">
   <!-- Email input -->
   <div class="text-center">
-  <!-- <p class="text-danger"><?= $erreur; ?></p> -->
   </div>
   <h1 class="text-center mt-2">Create An Account</h1>
 
