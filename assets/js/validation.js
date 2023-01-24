@@ -1,3 +1,4 @@
+// form validation for sign up
 let allValid = { "username" : false, "email" : false, "password": false , "confpassword": false };  
 
 function validation(element) {
@@ -75,3 +76,28 @@ function valideRegister(){
 }
 
 valideRegister();
+
+// form validation for Modal
+
+
+function validateForm() {
+  // Get all the input elements
+  var title = document.getElementById("blog-title");
+  var image = document.getElementById("blog-image");
+  var category = document.getElementById("blog-category");
+  var description = document.getElementById("blog-description");
+
+  // Check if any of the input elements are empty
+  if (title.value == "" || image.value == "" || category.value == "" || description.value == "") {
+    alert("All fields are required");
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+// Attach the validateForm function to the form's submit event
+var form = document.getElementById("form-blog");
+form.onsubmit = validateForm;
+

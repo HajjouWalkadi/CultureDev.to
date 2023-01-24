@@ -6,6 +6,7 @@ $CategorieController = new CategorieController();
 $Allcategories = $CategorieController->readCa();
   $post = new ArticleController();
   $article = $post->edit();
+  $categorie = $post->edit();
   if(isset($_POST['updateArticle'])){
     $id = $_GET['postEditId'];
     $update = $post->update($id, $_POST['title'], $_POST['content'], $_POST['category']);
@@ -20,6 +21,8 @@ $Allcategories = $CategorieController->readCa();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CultureDev.to</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.tiny.cloud/1/pwpx476ishkvo2br9a50p1v88j46q425bc452jxv7vkd8auv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
   </head>
   <body style="background-color: #EEE">
 <div class="col-md-7 col-12 mx-auto p-3 shadow shadow-sm bg-white mt-3">
@@ -45,9 +48,9 @@ $Allcategories = $CategorieController->readCa();
         <label class="form-label">Category</label>
         <select class="form-select" name= "category" id="blog-category" >
         <option value="" selected disabled>Please select</option>
-              <?php foreach($Allcategories AS $categorie){
-          echo '<option value="'.$categorie['id'].'">'.$categorie['title'].'</option>';
-                      }?>
+              <?php foreach($Allcategories AS $categorie){ ?>
+                <option value="<?= $categorie['id'] ?>" <?php if($article['categorie_id'] == $categorie['id']){ echo 'selected'; } ?> ><?= $categorie['title'] ?></option>';
+              <?php } ?>
         </select>
       </div>
       
@@ -62,7 +65,8 @@ $Allcategories = $CategorieController->readCa();
     </div> 
   </form>
 </div>
-
+  <script src="../assets/js/script.js"></script>
+     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>

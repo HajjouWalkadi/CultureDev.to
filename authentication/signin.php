@@ -10,6 +10,7 @@ $login = new Login();
 if(isset($_POST["login"])){
   $result = $login->login($_POST["email"], $_POST["password"]);
   if(isset($result)){
+    $_SESSION['id'] = $result['id'];
     $_SESSION['user_name'] = $result['username'];
     header('location:../pages/dashboard.php');
     die(var_dump($_SESSION));

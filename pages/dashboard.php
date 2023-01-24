@@ -2,11 +2,14 @@
 include_once '../controller/postsController.php';
 include_once '../functions/script.php';
 include_once '../controller/categoriesController.php';
+// session_start();
 $CategorieController = new CategorieController();
 $Allcategories = $CategorieController->readCa();
 $ArticleController = new ArticleController();
 $ArticleController->create();
 $Allarticles = $ArticleController->read();
+$UserController = new Select();
+$allUsers = $UserController->selectAllUsers();
 if(!isset($_SESSION['user_name'])){
   header('location:../authentication/signin.php');
 }
@@ -122,7 +125,7 @@ $ArticleController->delete($_GET['ide']);
                       <i class="fa-solid fa-square text-white fa-lg"></i>
                   </div>
                   <h5 class="card-title">Total Posts</h5>
-                  <p class="card-text justify-content"></p>
+                  <p class="card-text justify-content"><?= count($ArticleController->read()) ?></p>
                 </div>
               </div>
               <!--Total for each category  -->
@@ -132,14 +135,7 @@ $ArticleController->delete($_GET['ide']);
                       <i class="fa-solid fa-cubes text-white fa-lg"></i>
                   </div>
                 <h5 class="card-title">Total for each category</h5>
-                
-                <!-- //   while( $product=mysqli_fetch_assoc($result)){
-                    
-                  <span>laptops : <span></span></span><br>      
-                  <span>keyboards : <span></span></span><br>  
-                  <span>mouses : <span></span><br>
-                  <span>games : <span></span> <br>      
-                  <span>headphones : <span></span></span><br> -->
+                <p class="card-text justify-content"><?= count($CategorieController->readCa()) ?></p>
                 </div>          
               </div>
               <!-- Total posts for each Developper -->
@@ -148,7 +144,8 @@ $ArticleController->delete($_GET['ide']);
                 <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -30px;">
                       <i class="fa-solid fa-person text-white fa-lg"></i>
                   </div>
-                  <h5 class="card-title">Total posts for each Developper</h5>
+                  <h5 class="card-title">Total Authors</h5>
+                  <p class="card-text justify-content"><?= count($allUsers) ?></p>
                  
                   </div>          
               </div>

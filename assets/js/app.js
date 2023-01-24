@@ -28,19 +28,23 @@ function savemultiple(){
         <textarea class="form-control" name="content[]" id="blog-description" placeholder="Content..."></textarea>
       </div>
     </div>
+    <button class="btn btn-sm btn-danger" id="btnRemove">Delete</button>
   </div>`;
-// console.log(lenght);
 remplireSelect();
 $('#txtLenght').val(lenght);
 
 }
+$('body').on('click','#btnRemove',function(){
+  $(this).closest('div').remove();
+  lenght--;
+  $('#anothetModel').val(lenght);
+  document.getElementById('txtLenght').value = lenght ;
+});
 
 function remplireSelect(){
     
     let Categorie = document.getElementById('CategorieInput'+lenght);
-    // console.log(Categorie);
     let cat = document.getElementById('CategorieInput').children;
-    // console.log(cat);
     
    
     

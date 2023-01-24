@@ -47,8 +47,15 @@ class Login extends Database{
 }
 
 class Select extends Database{
-  public function selectUserById($id){
-    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE id = $id");
-    return $stmt->execute();
+  public function selectAllUsers(){
+    $stmt = $this->connectPDO()->prepare("SELECT * FROM admin");
+    $stmt->execute();
+    $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
   }
+
+  // public function selectUserById($id){
+  //   $stmt = $this->connectPDO()->prepare("SELECT * FROM admin WHERE id = $id");
+  //   return $stmt->execute();
+  // }
 }

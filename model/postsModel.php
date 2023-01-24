@@ -19,10 +19,10 @@ class Article extends Database{
         return $stmt;
     }
 
-    public function createDB($title, $content, $category_id, $image, $imageName){
-        $sql = "INSERT INTO articles (title,content,image,categorie_id) VALUES (?,?,?,?)";
+    public function createDB($admin,$title, $content, $image, $imageName, $category_id){
+        $sql = "INSERT INTO articles (admin_id,title,content,image,categorie_id) VALUES (?,?,?,?,?)";
         $stmt = $this->connectPDO()->prepare($sql);
-        $stmt->execute([$title,$content,$image,$category_id]);
+        $stmt->execute([$admin,$title,$content,$image,$category_id]);
         
         move_uploaded_file($imageName, '../assets/upload/'. $image);
         return 1;

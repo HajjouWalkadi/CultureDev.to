@@ -2,6 +2,7 @@
 
 include_once '../model/postsModel.php';
 
+
 class ArticleController extends Article{
     function uploadimage(){
         $img_name = $_FILES['my_image']['name'];
@@ -13,7 +14,7 @@ class ArticleController extends Article{
             if ($img_size > 1000000) 
             {
                 $_SESSION['Error'] = "Sorry, your file is too large.";
-                 /* */   header('location: ../pages/dashboard.php');
+                 header('location: ../pages/dashboard.php');
             }
             else
             {
@@ -25,7 +26,7 @@ class ArticleController extends Article{
                     if (in_array($img_ex_lc, $allowed_exs)) 
                     {
                         $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                   /* */     $img_upload_path = '../assets/upload/'.$new_img_name;
+                        $img_upload_path = '../assets/upload/'.$new_img_name;
                         move_uploaded_file($tmp_name, $img_upload_path);
                     }
                     else {
@@ -36,7 +37,7 @@ class ArticleController extends Article{
         }
         else{
             $_SESSION['Error'] = 'unknown error occurred!';
-             /* */   header('location: ../pages/dashboard.php');   
+            header('location: ../pages/dashboard.php');   
         }
         return $new_img_name ;
     }
@@ -55,7 +56,7 @@ class ArticleController extends Article{
             // if(!empty($_FILES["my_image"])) {
             //     $image=$this->uploadimage();
             
-            $result=$this->createDB($_POST['title'][$i],$_POST['content'][$i],$_POST['category'][$i], $_FILES['my_image']['name'][$i], $_FILES['my_image']['tmp_name'][$i]);
+            $result=$this->createDB($_SESSION['id'],$_POST['title'][$i],$_POST['content'][$i], $_FILES['my_image']['name'][$i], $_FILES['my_image']['tmp_name'][$i],$_POST['category'][$i]);
             if($result==1){
                 header('location:../pages/dashboard.php');
             // }
